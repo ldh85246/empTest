@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var arr;
+	
+	$.ajax({url:"/listEmp.do", success:function(data){
+		arr = data;
+		$.each(arr, function(idx, emp){
+			var tr = $("<tr/>");
+			var tdEno = $("<td/>").text(emp.eno);
+			var a = $("<a/>").attr("href", "/detailEmp.do?eno=" + emp.eno).text(emp.ename);
+			var tdEname = $("<td/>").appned(a);
+			var tdJob = $("<td/>").text(emp.job);
+			var tdSal = $("<td/>").text(emp.sal);
+			var tdComm = $("<td/>").text(emp.comm);
+			var tdMgr = $("<td/>").text(emp.mgr);
+			var tdHiredate = $("<td/>").text(emp.hiredate);
+			var tdEmail = $("<td/>").text(emp.email);
+			var tdJumin = $("<td/>").text(emp.jumin);
+			$(tr).append(tdEno, tdEname, tdJob, tdSal, tdComm, tdMgr,
+					tdHiredate, tdEmail, tdJumin);
+			$("#list").append(tr);
+		});
+	}});
+});
+</script>
+</head>
+<body>
+	<h2>사원목록</h2>
+	<a href="/insertEmp.do">사원등록</a>
+	<hr>
+	<div id="list">
+		<table border="1" width="80%">
+			<tr>
+				<thead>
+					<th>사원번호</th>
+					<th>사원명</th>
+					<th>직급</th>
+					<th>급여</th>
+					<th>상여</th>
+					<th>관리자번호</th>
+					<th>입사일</th>
+					<th>이메일</th>
+					<th>주민번호</th>
+				</thead>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
