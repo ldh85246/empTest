@@ -7,7 +7,7 @@
 		select * from emp;
 	</select>
 	<insert id="insert">
-		insert into emp values(#{eno},#{ename},#{job},#{sal},#{comm},#{mgr},#{hiredate},#{dno});
+		insert into emp values(#{eno},#{ename},#{job},#{sal},#{comm},#{mgr},#{hiredate},#{dno})
 	</insert>
 	<update id="update">
 		update emp set ename =#{ename} , job =#{job} , sal = #{sal} , comm =#{comm} , mgr = #{mgr} , hiredate = #{hiredate} , dno = #{dno} where eno=#{eno}
