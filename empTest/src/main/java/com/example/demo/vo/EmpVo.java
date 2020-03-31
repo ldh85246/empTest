@@ -19,5 +19,4 @@ public class EmpVo {
 	private int dno;
 	private String email;
 	private String jumin;
-
 }
