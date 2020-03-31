@@ -7,6 +7,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var arr;
+	
 	$.ajax({url:"/listEmp.do", success:function(data){
 		arr = data;
 		$.each(arr, function(idx, emp){
