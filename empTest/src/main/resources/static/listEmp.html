@@ -13,8 +13,8 @@ $(document).ready(function(){
 		$.each(arr, function(idx, emp){
 			var tr = $("<tr/>");
 			var tdEno = $("<td/>").text(emp.eno);
-			var a = $("<a/>").attr("href", "/detailEmp.do?eno=" + emp.eno).text(emp.ename);
-			var tdEname = $("<td/>").appned(a);
+			var a = $("<a/>").attr("href", "/detail.html?eno=" + emp.eno).text(emp.ename);
+			var tdEname = $("<td/>").append(a);
 			var tdJob = $("<td/>").text(emp.job);
 			var tdSal = $("<td/>").text(emp.sal);
 			var tdComm = $("<td/>").text(emp.comm);
@@ -34,8 +34,8 @@ $(document).ready(function(){
 	<h2>사원목록</h2>
 	<a href="/insertEmp.do">사원등록</a>
 	<hr>
-	<div id="list">
-		<table border="1" width="80%">
+<!-- 	<div id="list"> -->
+		<table id="list" border="1" width="80%">
 			<tr>
 				<thead>
 					<th>사원번호</th>
@@ -50,6 +50,6 @@ $(document).ready(function(){
 				</thead>
 			</tr>
 		</table>
-	</div>
+<!-- 	</div> -->
 </body>
 </html>
