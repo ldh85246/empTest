@@ -11,3 +11,5 @@
 
 dept는 dno(*), dname, dloc<br>
 emp는 eno(*), enmame, job, sal, comm, mgr, hiredate, dno(**), email, jumin
+
+!!! 항상 "git pull"부터 하셔야 합니다 !!!
