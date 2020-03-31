@@ -9,5 +9,5 @@
 포트는 8099
 !! *은 pk, **은 fk
 
-dept는 dno(*), dname, dloc
+dept는 dno(*), dname, dloc<br>
 emp는 eno(*), enmame, job, sal, comm, mgr, hiredate, dno(**), email, jumin
