@@ -8,6 +8,6 @@ public class EmpTestApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EmpTestApplication.class, args);
-	}
+	} 
 
 }

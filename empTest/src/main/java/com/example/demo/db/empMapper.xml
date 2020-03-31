@@ -4,6 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="emp">
   <select id="list" resultType="empVo">
-    select * from Blog where id = #{id}
+    select * from Blog where  = #{id}
   </select>
 </mapper>
