@@ -27,6 +27,14 @@ public class EmpManager {
 		session.close();
 		return list;
 	}
+	
+	public static EmpVo detailEmp(int eno) {
+		SqlSession session = factory.openSession();
+		EmpVo e = session.selectOne("emp.detail", eno);
+		session.close();
+		return e;
+	}
+	
 	public static int insertEmp(EmpVo e) {
 		int re = -1;
 		SqlSession session = factory.openSession();

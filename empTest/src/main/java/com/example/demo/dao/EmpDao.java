@@ -12,6 +12,9 @@ public class EmpDao {
 	public List<EmpVo> listEmp(){
 		return EmpManager.listEmp();
 	}
+	public EmpVo detailEmp(int eno) {
+		return EmpManager.detailEmp(eno);
+	}
 	public int insertEmp(EmpVo e) {
 		return EmpManager.insertEmp(e);
 	}
