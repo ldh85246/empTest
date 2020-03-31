@@ -8,9 +8,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.example.demo.vo.DeptVo;
 import com.example.demo.vo.EmpVo;
 
-public class EmpManager {
+public class DeptManager {
 	private static SqlSessionFactory factory;
 	static {
 		try {
@@ -21,32 +22,16 @@ public class EmpManager {
 			System.out.println(e);
 		}
 	}
-	public static List<EmpVo> listEmp(){
+	public static List<DeptVo> listDept(){
 		SqlSession session = factory.openSession();
-		List<EmpVo> list = session.selectList("emp.list");
+		List<DeptVo> list = session.selectList("dept.list");
 		session.close();
 		return list;
 	}
-	public static int insertEmp(EmpVo e) {
+	public static int insertDept(DeptVo d) {
 		int re = -1;
 		SqlSession session = factory.openSession();
-		re = session.insert("emp.insert", e);
-		session.commit();
-		session.close();
-		return re;
-	}
-	public static int updateEmp(EmpVo e) {
-		int re = -1;
-		SqlSession session = factory.openSession();
-		re = session.update("emp.update", e);
-		session.commit();
-		session.close();
-		return re;
-	}
-	public static int deleteEmp(EmpVo e) {
-		int re = -1;
-		SqlSession session = factory.openSession();
-		re = session.delete("emp.delete", e);
+		re = session.insert("dept.insert", d);
 		session.commit();
 		session.close();
 		return re;
