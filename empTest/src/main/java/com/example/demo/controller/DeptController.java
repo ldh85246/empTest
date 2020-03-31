@@ -26,6 +26,7 @@ public class DeptController {
 		str = gson.toJson(list);
 		return str;
 	}
+	
 	@RequestMapping("/insertDept.do")
 	public String insertDept(DeptVo d) {
 		int re = -1;
