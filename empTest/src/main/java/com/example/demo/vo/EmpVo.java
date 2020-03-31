@@ -16,5 +16,4 @@ public class EmpVo {
 	private int comm;
 	private String hiredate;
 	private int dno;
-	private int a;
 }
