@@ -7,10 +7,14 @@
 <script type="text/javascript">
 $(function(){
 	$("#btnLogin").click(function(){
-		alert("1");
 		var login = $("#login").serialize();
-		$.ajax({url:"/login.do", data:data , success:function(r){
-			alert(r);	
+		$.ajax({url:"/login.do", data:login , success:function(r){
+			if(r.id == null){
+				alert("잘못된 입력입니다.")
+			}else{
+				sessionStorage.setItem("memberID",r.id);
+				location.href="main.html"
+			}
 		}})		
 	})
 })
@@ -27,7 +31,7 @@ $(function(){
 		</tr>
 			
 		</table>
-		<button id="btnLogin">로그인</button>
 		</form>
+		<button id="btnLogin">로그인</button>
 </body>
 </html>
