@@ -36,13 +36,13 @@ public class LoginAspect {
 		int dd = today.getDate();
 		int hh = today.getHours();
 		int min = today.getMinutes();
-		String fname = yy+"년"+mm+"월"+dd+"일"+hh+"시";
+		String fname = yy+"년"+mm+"월"+dd+"일";
 		String path = "C:/dotoriLogData";
 		LogDao dao = new LogDao();
 		LogVo vo = new LogVo();
 		vo.setNo(0);
 		vo.setIp(ip);
-		vo.setTime(fname+""+min+"분");
+		vo.setTime(fname+""+hh+"시"+min+"분");
 		vo.setUrl(uri);
 		dao.insert(vo);
 		try {
