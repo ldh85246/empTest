@@ -7,17 +7,19 @@
 <script type="text/javascript">
 $(function(){
 	$("#btnAdd").click(function(){
-		$.ajax({url:"insertEmp.do", success:function(data){
-			if(data == 1){
-				window.location.href ="listEmp.html";
-			}
-		}})
+		var data = $("#f").serialize();
+ 		$.ajax({url:"/insertEmp.do", data:data ,success:function(r){
+ 			if(r==1){
+ 				location.href ="listEmp.html"
+ 			}
+ 		}})
 	})
 })
 </script>
 </head>
 <body>
 	<h2>사원 등록</h2>
+	<form id="f">
 	사원번호 : <input type="number" name="eno"><br>
 	사원명 : <input type="text" name="ename"><br>
 	직급 : <input type="text" name="job"><br>
@@ -28,5 +30,6 @@ $(function(){
 	이메일 : <input type="text" name="email"><br>
 	주민번호 : <input type="text" name="jumin"><br>
 	<button id="btnAdd">등록</button>
+	</form>
 </body>
 </html>
