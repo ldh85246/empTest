@@ -38,7 +38,7 @@ public class EmpController {
 		return str;
 	}
 	
-	@RequestMapping(value = "/insertEmp.do")
+	@RequestMapping(value = "/insertEmp.do" , produces = "application/json; charset=UTF-8")
 	public String insertEmp(EmpVo e) {
 		int re = -1;
 		re = dao.insertEmp(e);
