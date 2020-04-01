@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.util.Date;
 
@@ -46,6 +47,10 @@ public class LoginAspect {
 		vo.setUrl(uri);
 		dao.insert(vo);
 		try {
+			File folder = new File(path);
+			if(!folder.exists()) {
+				folder.mkdir();
+			}
 			FileWriter fileWriter = new FileWriter(path+"/"+fname+".txt",true);
 			fileWriter.write(msg);
 			fileWriter.close();
