@@ -88,7 +88,15 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
-
+		
+			<!-- https://mvnrepository.com/artifact/cn.easyproject/orai18n -->
+		<dependency>
+		    <groupId>cn.easyproject</groupId>
+		    <artifactId>orai18n</artifactId>
+		    <version>11.2.0.4</version>
+		</dependency>
+		
+	
 	</dependencies>
 
 	<build>
