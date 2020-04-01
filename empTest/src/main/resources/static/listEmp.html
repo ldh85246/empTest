@@ -59,6 +59,7 @@ $(document).ready(function(){
 		if(memberID != null){
 			$("#beforeLogin").css("visibility", "hidden")
 			$("#afterLogin").css("visibility", "visible")
+			$("#menu").css("visibility", "visible")
 			$("#loginOK").text(memberID+"님 환영합니다.")
 		}
 	}});
@@ -95,6 +96,9 @@ $(document).ready(function(){
 		}else{
 			alert("잘못된 접근입니다.")
 		}
+	})
+	$("#log").click(function(){
+		location.href="/log.html";
 	})
 });
 </script>
