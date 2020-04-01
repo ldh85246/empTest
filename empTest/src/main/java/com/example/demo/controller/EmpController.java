@@ -65,7 +65,7 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value = "/deleteEmp.do")
-	public String deleteEmp(HttpServletResponse response,HttpServletRequest request, int eno) {
+	public String deleteEmp(HttpServletRequest request,HttpServletResponse response, int eno) {
 		
 		int re = -1;
 		String str = "";
