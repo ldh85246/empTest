@@ -51,10 +51,10 @@ public class EmpManager {
 		session.close();
 		return re;
 	}
-	public static int deleteEmp(EmpVo e) {
+	public static int deleteEmp(int eno) {
 		int re = -1;
 		SqlSession session = factory.openSession();
-		re = session.delete("emp.delete", e);
+		re = session.delete("emp.delete", eno);
 		session.commit();
 		session.close();
 		return re;

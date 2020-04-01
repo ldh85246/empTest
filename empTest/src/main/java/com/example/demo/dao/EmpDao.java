@@ -21,7 +21,7 @@ public class EmpDao {
 	public int updateEmp(EmpVo e) {
 		return EmpManager.updateEmp(e);
 	}
-	public int deleteEmp(EmpVo e) {
-		return EmpManager.deleteEmp(e);
+	public int deleteEmp(int eno) {
+		return EmpManager.deleteEmp(eno);
 	}
 }
