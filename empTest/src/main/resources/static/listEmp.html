@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+	.active{
+		background: red;
+	}
+	.on{
+		background: orange;
+	}
+</style>
 <meta charset="utf-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -25,6 +33,17 @@ $(document).ready(function(){
 			$(tr).append(tdEno, tdEname, tdJob, tdSal, tdComm, tdMgr,
 					tdHiredate, tdEmail, tdJumin);
 			$("#list").append(tr);
+			
+			$(tr).hover(function(){
+				$(this).addClass("on")
+			}, function(){
+				$(this).removeClass("on")
+			})
+			
+			$(tr).click(function(){
+				$("tr").removeClass("active",200)
+				$(this).addClass("active",200);
+			})
 		});
 	}});
 });
