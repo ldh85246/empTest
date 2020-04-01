@@ -7,6 +7,6 @@
 		select * from log
 	</select>
 	<insert id="insert">
-		insert into log values(seq_log_no.nextval, #{url}, #{ip} , #{time})
+		insert into log values(seq_log_no.nextval, #{url}, #{ip} , #{time}) 
 	</insert>
 </mapper>

@@ -24,7 +24,7 @@ public class LoginAspect {
 	
 	@Before("controlMethod()")
 	public void before(JoinPoint joinPoint) {
-		String methodName = joinPoint.getSignature().toShortString();
+		String methodName = joinPoint.getSignature().toShortString(); 
 		HttpServletRequest request =(HttpServletRequest)joinPoint.getArgs()[0];
 		String uri = request.getRequestURI();
 		String ip = request.getRemoteAddr();

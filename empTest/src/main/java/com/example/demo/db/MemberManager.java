@@ -8,9 +8,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.example.demo.vo.LogVo;
+import com.example.demo.vo.EmpVo;
+import com.example.demo.vo.MemberVo;
 
-public class LogManager {
+public class MemberManager {
 	private static SqlSessionFactory factory;
 	static {
 		try {
@@ -21,17 +22,11 @@ public class LogManager {
 			System.out.println(e);
 		}
 	}
-	public static List<LogVo> listLog(){
+	public static MemberVo isMember(MemberVo m) {
+		MemberVo vo = null;
 		SqlSession session = factory.openSession();
-		List<LogVo> list = session.selectList("log.list");
+		vo = session.selectOne("member.isMember", m);
 		session.close();
-		return list;
-	}
-	public static int insertLog(LogVo l) {
-		int re = -1;
-		SqlSession session = factory.openSession(true); 
-		re = session.insert("log.insert", l);
-		session.close();
-		return re;
+		return vo;
 	}
 }
