@@ -8,6 +8,9 @@
 	.on{
 		background: orange;
 	}
+	#afterLogin{
+		visibility: hidden;
+	}
 </style>
 <meta charset="utf-8">
 <title>Insert title here</title>
@@ -21,8 +24,8 @@ $(document).ready(function(){
 		$.each(arr, function(idx, emp){
 			var tr = $("<tr/>");
 			var tdEno = $("<td/>").text(emp.eno);
-			var a = $("<a/>").attr("href", "/detailEmp.html?eno=" + emp.eno).text(emp.ename);
-			var tdEname = $("<td/>").append(a);
+			// var a = $("<a/>").attr("href", "/detailEmp.html?eno=" + emp.eno).text(emp.ename);
+			var tdEname = $("<td/>").text(emp.ename);
 			var tdJob = $("<td/>").text(emp.job);
 			var tdSal = $("<td/>").text(emp.sal);
 			var tdComm = $("<td/>").text(emp.comm);
@@ -39,19 +42,63 @@ $(document).ready(function(){
 			}, function(){
 				$(this).removeClass("on")
 			})
-			
 			$(tr).click(function(){
 				$("tr").removeClass("active",200)
 				$(this).addClass("active",200);
 				
+				var memberID = sessionStorage.getItem("memberID")
+				if(memberID == null){
+					alert("로그인 하세요.")
+					location.href="/listEmp.html"
+				}else{
+					location.href = "/detailEmp.html?eno=" + emp.eno;
+				}
 			})
 		});
 	}});
+	
+	$("#btnLogin").click(function(){
+		var member = $("#login").serialize()
+		$.ajax("/login", {data:member, success:function(r){
+			if(r != "no"){
+				sessionStorage.setItem("memberID", r);
+				alert("로그인 성공")
+				$("#loginOK").html(r)
+				
+				$("#afterLogin").css("visibility", "visible")
+				$("#beforeLogin").css("visibility", "hidden")
+			}else{
+				alert("아이디와 비밀번호를 확인해주세요.")
+			}
+		}})
+	})
+	
+	$("#btnLogout").click(function(){
+		sessionStorage.removeItem("memberID")
+		$("#beforeLogin").css("visibility", "visible")
+		$("#afterLogin").css("visibility", "hidden")
+		// 수정해야됨 var input = $("#login").serialize()
+		// 수정해야됨 $(input).val().empty()
+	})
 });
 </script>
 </head>
 <body>
 	<h2>사원목록</h2>
+	
+	<div id="beforeLogin">
+		<form id="login">
+			아이디 : <input type="text" name="id">
+			비밀번호 : <input type="password" name="pwd">
+		</form>
+		<button id="btnLogin">로그인</button>
+	</div>
+	
+	<div id="afterLogin">
+		<span id="loginOK">님 환영합니다.</span>&nbsp;&nbsp;
+		<button id="btnLogout">로그아웃</button>
+	</div>
+
 	<a href="/insertEmp.do">사원등록</a>
 	<hr>
 <!-- 	<div id="list"> -->
