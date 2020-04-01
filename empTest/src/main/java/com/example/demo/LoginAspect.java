@@ -29,7 +29,7 @@ public class LoginAspect {
 		String uri = request.getRequestURI();
 		String ip = request.getRemoteAddr();
 		String time = new Date().toLocaleString();
-		String msg = uri+"/"+ip+"/"+time+"\n";
+		String msg = uri+"/"+ip+"/"+time+"\r\n";
 		Date today = new Date();
 		int yy = today.getYear()+1900;
 		int mm = today.getMonth()+1;

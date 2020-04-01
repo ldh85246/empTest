@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +17,7 @@ public class MemberController {
 		this.dao = dao;
 	}
 	@RequestMapping("/login.do")
-	public String login(MemberVo m) {
+	public String login(HttpServletRequest request, MemberVo m) {
 		String str = "no";
 		MemberVo vo = dao.isMember(m);
 		if(vo != null) {

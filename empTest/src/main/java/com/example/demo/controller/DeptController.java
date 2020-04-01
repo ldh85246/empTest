@@ -30,7 +30,7 @@ public class DeptController {
 	}
 	
 	@RequestMapping("/insertDept.do")
-	public String insertDept(DeptVo d,HttpServletRequest request) {
+	public String insertDept(HttpServletRequest request, DeptVo d) {
 		int re = -1;
 		String str = "";
 		re = dao.insertDept(d);

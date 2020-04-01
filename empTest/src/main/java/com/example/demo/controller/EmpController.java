@@ -35,7 +35,7 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value = "/detailEmp.do", produces = "application/json; charset=UTF-8")
-	public String detailEmp(int eno,HttpServletRequest request) {
+	public String detailEmp(HttpServletRequest request, int eno) {
 		String str = "";
 		EmpVo e = dao.detailEmp(eno);
 		Gson gson = new Gson();
@@ -44,14 +44,14 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value = "/insertEmp.do" , produces = "application/json; charset=UTF-8")
-	public String insertEmp(EmpVo e, HttpServletRequest request) {
+	public String insertEmp(HttpServletRequest request, EmpVo e) {
 		int re = -1;
 		re = dao.insertEmp(e);
 		return ""+re;
 	}
 	
 	@RequestMapping(value = "/updateEmp.do")
-	public String updateEmp(EmpVo e,HttpServletRequest request) {
+	public String updateEmp(HttpServletRequest request, EmpVo e) {
 		int re = -1;
 		String str = "";
 		System.out.println(e.getEno() + "/" + e.getEname() + "/" + 
@@ -65,7 +65,7 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value = "/deleteEmp.do")
-	public String deleteEmp(int eno, HttpServletResponse response,HttpServletRequest request) {
+	public String deleteEmp(HttpServletResponse response,HttpServletRequest request, int eno) {
 		
 		int re = -1;
 		String str = "";
