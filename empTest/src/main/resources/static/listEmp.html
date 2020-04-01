@@ -11,6 +11,10 @@
 
 	#dotori{
 		font:bold; 
+		}
+	#menu{
+		visibility: hidden;
+	}
 </style>
 <meta charset="utf-8">
 <title>Insert title here</title>
@@ -18,7 +22,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var arr;
-	
+	var memberID = sessionStorage.getItem("memberID")
 	$.ajax({url:"/listEmp.do", success:function(data){
 		arr = data;
 		$.each(arr, function(idx, emp){
@@ -42,7 +46,7 @@ $(document).ready(function(){
 			}, function(){
 				$(this).removeClass("on")
 			})
-			$(tr).click(function(){	
+			$(tr).click(function(){
 				var memberID = sessionStorage.getItem("memberID")
 				if(memberID == null){
 					alert("로그인 하세요.")
@@ -52,6 +56,11 @@ $(document).ready(function(){
 				}
 			})
 		});
+		if(memberID != null){
+			$("#beforeLogin").css("visibility", "hidden")
+			$("#afterLogin").css("visibility", "visible")
+			$("#loginOK").text(memberID+"님 환영합니다.")
+		}
 	}});
 	
 	$("#btnLogin").click(function(){
@@ -59,15 +68,14 @@ $(document).ready(function(){
 		$.ajax("/login.do", {data:member, success:function(data){
 			if(data.id == null){
 				alert("잘못된 접근입니다.");
+				$("#menu").css("visibility", "hidden")
 			}else{
 				sessionStorage.setItem("memberID",data.id);
 				$("#beforeLogin").css("visibility", "hidden")
 				$("#afterLogin").css("visibility", "visible")
-				$("#loginOK").text(data.name+"님 환영합니다.")
+				$("#loginOK").text(data.id+"님 환영합니다.")
 				if(data.id == "admin"){
-					var btn = $("<button/>").attr("id","logbtn");
-					$(btn).text("로그보러가기")
-					$("#menu").append(btn);
+					$("#menu").css("visibility", "visible")
 				}
 			}
 		}})
@@ -77,6 +85,7 @@ $(document).ready(function(){
 		sessionStorage.removeItem("memberID")
 		$("#beforeLogin").css("visibility", "visible")
 		$("#afterLogin").css("visibility", "hidden")
+		$("#menu").css("visibility", "hidden")
 	})
 	
 	$("#insert").click(function(){
@@ -109,7 +118,7 @@ $(document).ready(function(){
 
 
 	<!-- <a href="/insertEmp.html" id="insert">사원등록</a> -->
-	<div id="menu"><button id="insert">사원등록</button></div>
+	<div id="menu"><button id="insert">사원등록</button> <button id="log">로그보기</button></div>
 	<hr>
 	<table id="list" border="1" width="80%" style="margin-left: auto; margin-right: auto;">
 		<tr>
