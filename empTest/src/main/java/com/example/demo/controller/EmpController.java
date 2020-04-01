@@ -1,11 +1,13 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.dao.EmpDao;
 import com.example.demo.vo.EmpVo;
@@ -62,14 +64,20 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value = "/deleteEmp.do")
-	public ModelAndView deleteEmp(int eno) {
-		ModelAndView mav = new ModelAndView("/listEmp.html");
+	public String deleteEmp(int eno, HttpServletResponse response) {
+		
 		int re = -1;
 		String str = "";
 		re = dao.deleteEmp(eno);
 		if (re > 0) {
 			str = "회원삭제 성공";
+			try {
+				response.sendRedirect("/listEmp.html");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return mav;
+		return str;
 	}
 }
