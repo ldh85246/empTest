@@ -32,7 +32,7 @@ public class MailController {
 	public void setJavaMailSender(MailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
 	}
-	@RequestMapping("/mail.do")
+	
 		public String mail() {
 			String str = "";
 			List<EmpVo>list = dao.listEmp();
