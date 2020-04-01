@@ -6,10 +6,15 @@
 		background: red ;
 	}
 	.on{
-		background: orange;
+		background: #FAECC5;
 	}
 	#afterLogin{
 		visibility: hidden;
+	}
+	#dotori{
+		font:bold;
+		
+		
 	}
 </style>
 <meta charset="utf-8">
@@ -86,7 +91,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<h2>사원목록</h2>
+	<h2 id="title" style="text-align:center">DOTORI</h2>
+	<h3>사원목록</h3>
 	
 	<div id="beforeLogin">
 		<form id="login">
@@ -119,5 +125,6 @@ $(document).ready(function(){
 			</thead>
 		</tr>
 	</table>
+	<img src="img/loo.png"/>
 </body>
 </html>
