@@ -16,12 +16,14 @@
 $(document).ready(function(){
 	var arr;
 	
+	
+	
 	$.ajax({url:"/listEmp.do", success:function(data){
 		arr = data;
 		$.each(arr, function(idx, emp){
 			var tr = $("<tr/>");
 			var tdEno = $("<td/>").text(emp.eno);
-			var a = $("<a/>").attr("href", "/detail.html?eno=" + emp.eno).text(emp.ename);
+			var a = $("<a/>").attr("href", "/detailEmp.html?eno=" + emp.eno).text(emp.ename);
 			var tdEname = $("<td/>").append(a);
 			var tdJob = $("<td/>").text(emp.job);
 			var tdSal = $("<td/>").text(emp.sal);
