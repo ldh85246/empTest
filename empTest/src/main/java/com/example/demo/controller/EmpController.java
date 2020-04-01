@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class EmpController {
 	
 	
 	@RequestMapping(value = "/listEmp.do", produces = "application/json; charset=UTF-8")
-	public String listEmp() {
+	public String listEmp(HttpServletRequest request) {
 		String str = "";
 		List<EmpVo>list = dao.listEmp();
 		Gson gson = new Gson();
@@ -34,7 +35,7 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value = "/detailEmp.do", produces = "application/json; charset=UTF-8")
-	public String detailEmp(int eno) {
+	public String detailEmp(int eno,HttpServletRequest request) {
 		String str = "";
 		EmpVo e = dao.detailEmp(eno);
 		Gson gson = new Gson();
@@ -43,14 +44,14 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value = "/insertEmp.do" , produces = "application/json; charset=UTF-8")
-	public String insertEmp(EmpVo e) {
+	public String insertEmp(EmpVo e,HttpServletRequest request) {
 		int re = -1;
 		re = dao.insertEmp(e);
 		return ""+re;
 	}
 	
 	@RequestMapping(value = "/updateEmp.do")
-	public String updateEmp(EmpVo e) {
+	public String updateEmp(EmpVo e,HttpServletRequest request) {
 		int re = -1;
 		String str = "";
 		System.out.println(e.getEno() + "/" + e.getEname() + "/" + 
@@ -64,7 +65,7 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value = "/deleteEmp.do")
-	public String deleteEmp(int eno, HttpServletResponse response) {
+	public String deleteEmp(int eno, HttpServletResponse response,HttpServletRequest request) {
 		
 		int re = -1;
 		String str = "";
