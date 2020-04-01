@@ -61,6 +61,10 @@ $(document).ready(function(){
 			$("#afterLogin").css("visibility", "visible")
 			$("#menu").css("visibility", "visible")
 			$("#loginOK").text(memberID+"님 환영합니다.")
+		}else{
+			$("#beforeLogin").css("visibility", "visible")
+			$("#afterLogin").css("visibility", "hidden")
+			$("#menu").css("visibility", "hidden")
 		}
 	}});
 	
