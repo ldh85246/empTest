@@ -14,7 +14,7 @@ public class MemberController {
 	public void setDao(MemberDao dao) {
 		this.dao = dao;
 	}
-	@RequestMapping("/login")
+	@RequestMapping("/login.do")
 	public String login(MemberVo m) {
 		String str = "no";
 		MemberVo vo = dao.isMember(m);
