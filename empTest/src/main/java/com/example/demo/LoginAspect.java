@@ -9,7 +9,11 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Component;
+
+import com.example.demo.dao.LogDao;
+import com.example.demo.vo.LogVo;
 
 @Aspect
 @Component
@@ -20,7 +24,7 @@ public class LoginAspect {
 	
 	@Before("controlMethod()")
 	public void before(JoinPoint joinPoint) {
-		String methodName = joinPoint.getSignature().toShortString();
+		String methodName = joinPoint.getSignature().toShortString(); 
 		HttpServletRequest request =(HttpServletRequest)joinPoint.getArgs()[0];
 		String uri = request.getRequestURI();
 		String ip = request.getRemoteAddr();
@@ -30,10 +34,19 @@ public class LoginAspect {
 		int yy = today.getYear()+1900;
 		int mm = today.getMonth()+1;
 		int dd = today.getDate();
-		String fname = yy+""+mm+""+dd+".txt";
+		int hh = today.getHours();
+		int min = today.getMinutes();
+		String fname = yy+"년"+mm+"월"+dd+"일";
 		String path = "C:/dotoriLogData";
+		LogDao dao = new LogDao();
+		LogVo vo = new LogVo();
+		vo.setNo(0);
+		vo.setIp(ip);
+		vo.setTime(fname+""+hh+"시"+min+"분");
+		vo.setUrl(uri);
+		dao.insert(vo);
 		try {
-			FileWriter fileWriter = new FileWriter(path+"/"+fname,true);
+			FileWriter fileWriter = new FileWriter(path+"/"+fname+".txt",true);
 			fileWriter.write(msg);
 			fileWriter.close();
 		} catch (Exception e) {

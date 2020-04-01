@@ -44,7 +44,7 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value = "/insertEmp.do" , produces = "application/json; charset=UTF-8")
-	public String insertEmp(EmpVo e,HttpServletRequest request) {
+	public String insertEmp(EmpVo e, HttpServletRequest request) {
 		int re = -1;
 		re = dao.insertEmp(e);
 		return ""+re;

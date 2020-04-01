@@ -2,20 +2,15 @@
 <html>
 <head>
 <style type="text/css">
-	.active{
-		background: red ;
-	}
 	.on{
 		background: #FAECC5;
 	}
 	#afterLogin{
 		visibility: hidden;
 	}
+
 	#dotori{
 		font:bold;
-		
-		
-	}
 </style>
 <meta charset="utf-8">
 <title>Insert title here</title>
@@ -23,8 +18,6 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var arr;
-	
-	
 	
 	$.ajax({url:"/listEmp.do", success:function(data){
 		arr = data;
@@ -49,10 +42,7 @@ $(document).ready(function(){
 			}, function(){
 				$(this).removeClass("on")
 			})
-			$(tr).click(function(){
-				$("tr").removeClass("active",200)
-				$(this).addClass("active",200);
-				
+			$(tr).click(function(){	
 				var memberID = sessionStorage.getItem("memberID")
 				if(memberID == null){
 					alert("로그인 하세요.")
@@ -66,17 +56,18 @@ $(document).ready(function(){
 	
 	$("#btnLogin").click(function(){
 		var member = $("#login").serialize()
-		$.ajax("/login", {data:member, success:function(r){
-			if(r != "no"){
-				sessionStorage.setItem("memberID", r);
+		$.ajax("/login.do", {data:member, success:function(data){
+			alert(data)
+			/*if(data != "no"){
+				sessionStorage.setItem("memberID", data);
 				alert("로그인 성공")
-				$("#loginOK").html(r)
+				$("#loginOK").html(data)
 				
 				$("#afterLogin").css("visibility", "visible")
 				$("#beforeLogin").css("visibility", "hidden")
 			}else{
 				alert("아이디와 비밀번호를 확인해주세요.")
-			}
+			}*/
 		}})
 	})
 	
@@ -86,6 +77,18 @@ $(document).ready(function(){
 		$("#afterLogin").css("visibility", "hidden")
 		// 수정해야됨 var input = $("#login").serialize()
 		// 수정해야됨 $(input).val().empty()
+	})
+	
+	$("#insert").click(function(){
+		var memberID = sessionStorage.getItem("memberID")
+		alert(memberID)
+		if(memberID == null){
+			alert("로그인 하세요.")
+			// location.href="/listEmp.html"
+			break;
+		}else{
+			location.href = "/insertEmp.html";
+		}
 	})
 });
 </script>
@@ -108,7 +111,8 @@ $(document).ready(function(){
 	</div>
 
 
-	<a href="/insertEmp.html">사원등록</a>
+	<!-- <a href="/insertEmp.html" id="insert">사원등록</a> -->
+	<button id="insert">사원등록</button>
 	<hr>
 	<table id="list" border="1" width="80%">
 		<tr>
@@ -125,6 +129,5 @@ $(document).ready(function(){
 			</thead>
 		</tr>
 	</table>
-	<img src="img/loo.png"/>
 </body>
 </html>
