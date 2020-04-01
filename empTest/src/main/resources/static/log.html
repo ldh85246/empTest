@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+   #insertDiv{
+      display: none;
+   }
+   
+   .active{
+      background: pink;
+   }
+   
+   #tb{
+      border-collapse: collapse;
+          text-align: left;
+       line-height: 1.5;
+   }
+   
+   #tb th{
+      padding: 10px;
+         vertical-align: top;
+       border-bottom: 3px solid #036;
+   }
+   #tb td{
+      width: 150px;
+          padding: 10px;
+       vertical-align: top;
+       border-bottom: 1px solid #ccc;
+   }
+   
+ 
+   li{
+      float: left;
+      list-style: none;
+      padding: 10px;
+      cursor: pointer;
+   }
+</style>
+<script type="text/javascript" src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+   $(function(){
+      var arr;
+      var totalRecord=0;
+      var totalPage=1;
+      var pageSIZE=10;
+      
+      function printPage(){
+         for(var i=1; i <= totalPage; i++){
+            var li = $("<li/>").html(i);
+            $(li).click(function(){
+               var pageNUM = Number($(this).text());
+               printLog(pageNUM);
+            });
+            $("#paging_button").append(li);
+         }
+      }
+      
+      
+      function printLog(pageNUM){
+         
+         $("#tb").empty();
+         $("#tb").html("<th>번호</th><th>URL 주소</th><th>IP 주소</th><th>접속 시간</th>");
+         
+         var start = (pageNUM-1)*pageSIZE+1;
+         var end = start + pageSIZE -1;
+         if(end>totalRecord){
+            end = totalRecord;
+         }
+         
+         for(var i=start; i <= end; i++){
+            
+            var aa = arr[i-1];
+            
+            var tr = $("<tr></tr>");
+            //var idx = $(this).attr("idx");
+            var td0 = $("<td></td>").html(aa.no);
+            var td1 = $("<td></td>").html(aa.url);
+            var td2 = $("<td></td>").html(aa.ip);
+            var td3 = $("<td></td>").html(aa.time);
+
+            $(tr).append(td0, td1, td2, td3);
+            $(tr).click(function(){
+               $("tr").removeClass("active");
+               $(this).addClass("active");
+            });
+         
+         $("#tb").append(tr);
+         };
+      }
+   
+
+      $.getJSON("/listLog.do",function(data){
+         arr=data;
+         //alert(arr);
+         
+         totalRecord = arr.length;
+         totalPage = Math.ceil(totalRecord/pageSIZE);
+         printPage();
+         printLog(1);
+      });
+      
+      $("#btn").click(function(){
+         location.href = "/main.html" 
+      })
+      
+   });
+</script>
+</head>
+<body>
+   <h2>로그 기록</h2>
+   <button id="btn">메인으로</button>
+   <hr>
+   <table id="tb" border="1" width="80%">
+      <tr>
+         <th>번호</th>
+         <th>URL 주소</th>
+         <th>IP 주소</th>
+         <th>접속 시간</th>
+      </tr>
+   </table>
+   <div id="paging_button"></div>
+</body>
+</html>
