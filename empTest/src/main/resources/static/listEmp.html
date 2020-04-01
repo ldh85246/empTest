@@ -69,17 +69,19 @@ $(document).ready(function(){
 	$("#btnLogin").click(function(){
 		var member = $("#login").serialize()
 		$.ajax("/login.do", {data:member, success:function(data){
-			alert(data)
-			/*if(data != "no"){
-				sessionStorage.setItem("memberID", data);
-				alert("로그인 성공")
-				$("#loginOK").html(data)
-				
-				$("#afterLogin").css("visibility", "visible")
-				$("#beforeLogin").css("visibility", "hidden")
+			if(data.id == null){
+				alert("잘못된 접근입니다.");
 			}else{
-				alert("아이디와 비밀번호를 확인해주세요.")
-			}*/
+				sessionStorage.setItem("memberID",data.id);
+				$("#beforeLogin").css("visibility", "hidden")
+				$("#afterLogin").css("visibility", "visible")
+				$("#loginOK").text(data.name+"님 환영합니다.")
+				if(data.id == "admin"){
+					var btn = $("<button/>").attr("id","logbtn");
+					$(btn).text("로그보러가기")
+					$("#menu").append(btn);
+				}
+			}
 		}})
 	})
 	
@@ -87,19 +89,14 @@ $(document).ready(function(){
 		sessionStorage.removeItem("memberID")
 		$("#beforeLogin").css("visibility", "visible")
 		$("#afterLogin").css("visibility", "hidden")
-		// 수정해야됨 var input = $("#login").serialize()
-		// 수정해야됨 $(input).val().empty()
 	})
 	
 	$("#insert").click(function(){
 		var memberID = sessionStorage.getItem("memberID")
-		alert(memberID)
-		if(memberID == null){
-			alert("로그인 하세요.")
-			// location.href="/listEmp.html"
-			break;
-		}else{
+		if(memberID == "admin"){
 			location.href = "/insertEmp.html";
+		}else{
+			alert("잘못된 접근입니다.")
 		}
 	})
 });
@@ -126,13 +123,13 @@ $(document).ready(function(){
 	</div>
 	
 	<div id="afterLogin">
-		<span id="loginOK">님 환영합니다.</span>&nbsp;&nbsp;
+		<span id="loginOK"></span>&nbsp;&nbsp;
 		<button id="btnLogout">로그아웃</button>
 	</div>
 
 
 	<!-- <a href="/insertEmp.html" id="insert">사원등록</a> -->
-	<button id="insert">사원등록</button>
+	<div id="menu"><button id="insert">사원등록</button></div>
 	<hr>
 	<div id="sss">
 	<table id="list" border="1" width="80%" style="margin-left: auto; margin-right: auto;">
