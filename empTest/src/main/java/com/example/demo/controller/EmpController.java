@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +25,7 @@ public class EmpController {
 	
 	
 	@RequestMapping(value = "/listEmp.do", produces = "application/json; charset=UTF-8")
-	public String listEmp() {
+	public String listEmp(HttpServletRequest request) {
 		String str = "";
 		List<EmpVo>list = dao.listEmp();
 		Gson gson = new Gson();
@@ -32,7 +34,7 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value = "/detailEmp.do", produces = "application/json; charset=UTF-8")
-	public String detailEmp(int eno) {
+	public String detailEmp(int eno,HttpServletRequest request) {
 		String str = "";
 		EmpVo e = dao.detailEmp(eno);
 		Gson gson = new Gson();
@@ -41,14 +43,14 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value = "/insertEmp.do" , produces = "application/json; charset=UTF-8")
-	public String insertEmp(EmpVo e) {
+	public String insertEmp(EmpVo e,HttpServletRequest request) {
 		int re = -1;
 		re = dao.insertEmp(e);
 		return ""+re;
 	}
 	
 	@RequestMapping(value = "/updateEmp.do")
-	public String updateEmp(EmpVo e) {
+	public String updateEmp(EmpVo e,HttpServletRequest request) {
 		int re = -1;
 		String str = "";
 		System.out.println(e.getEno() + "/" + e.getEname() + "/" + 
@@ -62,7 +64,7 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value = "/deleteEmp.do")
-	public ModelAndView deleteEmp(int eno) {
+	public ModelAndView deleteEmp(int eno,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("/listEmp.html");
 		int re = -1;
 		String str = "";
