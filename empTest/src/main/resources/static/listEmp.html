@@ -19,6 +19,8 @@
 $(document).ready(function(){
 	var arr;
 	
+	
+	
 	$.ajax({url:"/listEmp.do", success:function(data){
 		arr = data;
 		$.each(arr, function(idx, emp){
@@ -99,24 +101,23 @@ $(document).ready(function(){
 		<button id="btnLogout">로그아웃</button>
 	</div>
 
-	<a href="/insertEmp.do">사원등록</a>
+
+	<a href="/insertEmp.html">사원등록</a>
 	<hr>
-<!-- 	<div id="list"> -->
-		<table id="list" border="1" width="80%">
-			<tr>
-				<thead>
-					<th>사원번호</th>
-					<th>사원명</th>
-					<th>직급</th>
-					<th>급여</th>
-					<th>상여</th>
-					<th>관리자번호</th>
-					<th>입사일</th>
-					<th>이메일</th>
-					<th>주민번호</th>
-				</thead>
-			</tr>
-		</table>
-<!-- 	</div> -->
+	<table id="list" border="1" width="80%">
+		<tr>
+			<thead>
+				<th>사원번호</th>
+				<th>사원명</th>
+				<th>직급</th>
+				<th>급여</th>
+				<th>상여</th>
+				<th>관리자번호</th>
+				<th>입사일</th>
+				<th>이메일</th>
+				<th>주민번호</th>
+			</thead>
+		</tr>
+	</table>
 </body>
 </html>
