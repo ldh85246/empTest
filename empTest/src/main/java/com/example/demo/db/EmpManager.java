@@ -51,6 +51,7 @@ public class EmpManager {
 		session.close();
 		return re;
 	}
+	
 	public static int deleteEmp(int eno) {
 		int re = -1;
 		SqlSession session = factory.openSession();

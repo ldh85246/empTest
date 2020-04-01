@@ -21,6 +21,7 @@ public class EmpController {
 		this.dao = dao;
 	}
 	
+	
 	@RequestMapping(value = "/listEmp.do", produces = "application/json; charset=UTF-8")
 	public String listEmp() {
 		String str = "";

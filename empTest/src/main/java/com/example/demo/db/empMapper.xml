@@ -18,4 +18,5 @@
 	<delete id="delete">
 		delete emp where eno = #{eno}
 	</delete>
+	
 </mapper>
