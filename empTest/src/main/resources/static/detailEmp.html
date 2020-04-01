@@ -6,11 +6,12 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	var eno = location.search;
-	eno = eno.substring(eno.indexOf("=") + 1);
-	console.log(eno);
-	$.ajax({url:"/detailEmp.do?eno=" + eno, success:function(emp){
-		$("#eno").val(eno);
+	var memberID = sessionStorage.getItem("memberID")
+	var no = location.search;
+	no = no.substring(no.indexOf("=") + 1);
+	var data = {eno:no};
+	$.ajax("/detailEmp.do",{data:data, success:function(emp){
+		$("#eno").val(emp.eno);
 		$("#ename").val(emp.ename);
 		$("#job").val(emp.job);
 		$("#sal").val(emp.sal);
@@ -22,6 +23,11 @@ $(document).ready(function(){
 		$("#jumin").val(emp.jumin);
 		$("#updateEmp").attr("href", "/updateEmp.html?eno=" + eno);
 		$("#deleteEmp").attr("href", "/deleteEmp.do?eno=" + eno);
+		if(memberID=="admin"){
+			$("#menu").css("visibility", "visible")
+		}else{
+			$("#menu").css("visibility", "hidden")
+		}
 	}});
 	
 });
@@ -42,6 +48,6 @@ $(document).ready(function(){
 		이메일 : <input type="text" id="email" readonly="readonly"><br>
 		주민번호 : <input type="text" id="jumin" readonly="readonly"><br>
 	</form>
-	<a id="updateEmp">수정</a><a id="deleteEmp">삭제</a>
+	<div id= "menu"><a id="updateEmp">수정</a><a id="deleteEmp">삭제</a></div>
 </body>
 </html>
