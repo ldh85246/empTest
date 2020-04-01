@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var eno = location.search;
+	eno = eno.substring(eno.indexOf("=") + 1);
+	console.log(eno);
+	$.ajax({url:"/detailEmp.do?eno=" + eno, success:function(emp){
+		$("#eno").val(eno);
+		$("#ename").val(emp.ename);
+		$("#job").val(emp.job);
+		$("#sal").val(emp.sal);
+		$("#comm").val(emp.comm);
+		$("#mgr").val(emp.mgr);
+		$("#hiredate").val(emp.hiredate);
+		$("#dnno").val(emp.dno);
+		$("#email").val(emp.email);
+		$("#jumin").val(emp.jumin);
+		$("#updateEmp").attr("href", "/updateEmp.html?eno=" + eno);
+		$("#deleteEmp").attr("href", "/deleteEmp.do?eno=" + eno);
+	}});
+	
+});
+</script>
+</head>
+<body>
+	<h2>사원 상세 정보</h2>
+	<hr>
+	<form id="f">
+		사원번호 : <input type="text" id="eno" readonly="readonly"><br>
+		사원명 : <input type="text" id="ename" readonly="readonly"><br>
+		직급 : <input type="text" id="job" readonly="readonly"><br>
+		급여 : <input type="text" id="sal" readonly="readonly"><br>
+		수당 : <input type="text" id="comm" readonly="readonly"><br>
+		관리자 : <input type="text" id="mgr" readonly="readonly"><br>
+		입사일 : <input type="text" id="hiredate" readonly="readonly"><br>
+		부서명 : <input type="text" id="dno" readonly="readonly"><br>
+		이메일 : <input type="text" id="email" readonly="readonly"><br>
+		주민번호 : <input type="text" id="jumin" readonly="readonly"><br>
+	</form>
+	<a id="updateEmp">수정</a><a id="deleteEmp">삭제</a>
+</body>
+</html>

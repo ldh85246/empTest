@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var eno = location.search;
+	eno = eno.substring(eno.indexOf("=") + 1);
+	console.log(eno);
+	$.ajax({url:"/detailEmp.do?eno=" + eno, success:function(emp){
+		$("#eno").val(eno);
+		$("#ename").val(emp.ename);
+		$("#job").val(emp.job);
+		$("#sal").val(emp.sal);
+		$("#comm").val(emp.comm);
+		$("#mgr").val(emp.mgr);
+		$("#hiredate").val(emp.hiredate);
+		$("#dno").val(emp.dno);
+		$("#email").val(emp.email);
+		$("#jumin").val(emp.jumin);
+		
+	}});
+	$("#btnUpdate").click(function(){
+		var emp = $("#f").serialize();
+		$.ajax({url:"updateEmp.do", data:emp, success:function(data){
+			if(data != ""){
+				window.location.href ="listEmp.html";
+			}
+		}})
+	})
+	
+})
+</script>
+</head>
+<body>
+	<h2>사원 등록</h2>
+	<form id="f">
+		사원번호 : <input type="number" name="eno" id="eno" readonly="readonly"><br>
+		사원명 : <input type="text" name="ename" id="ename"><br>
+		직급 : <input type="text" name="job" id="job"><br>
+		급여 : <input type="number" name="sal" id="sal"><br>
+		상여 : <input type="number" name="comm" id="comm"><br>
+		관리자번호 : <input type="number" name="mgr" id="mgr"><br>
+		입사일 : <input type="text" name="hiredate" id="hiredate"><br>
+		부서번호 : <input type="text" name="dno" id="dno"><br>
+		이메일 : <input type="text" name="email" id="email"><br>
+		주민번호 : <input type="text" name="jumin" id="jumin"><br>
+	</form>
+	<button id="btnUpdate">수정</button>
+</body>
+</html>

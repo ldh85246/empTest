@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.dao.EmpDao;
 import com.example.demo.vo.EmpVo;
@@ -19,6 +20,7 @@ public class EmpController {
 	public void setDao(EmpDao dao) {
 		this.dao = dao;
 	}
+	
 	
 	@RequestMapping(value = "/listEmp.do", produces = "application/json; charset=UTF-8")
 	public String listEmp() {
@@ -49,6 +51,9 @@ public class EmpController {
 	public String updateEmp(EmpVo e) {
 		int re = -1;
 		String str = "";
+		System.out.println(e.getEno() + "/" + e.getEname() + "/" + 
+				e.getJob() + e.getSal() + "/" + e.getComm() + "/" + e.getMgr() + "/" + 
+				e.getHiredate() + "/" + e.getEmail() + "/" + e.getJumin() );
 		re = dao.updateEmp(e);
 		if (re > 0) {
 			str = "회원정보 수정 성공";
@@ -57,13 +62,14 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value = "/deleteEmp.do")
-	public String deleteEmp(EmpVo e) {
+	public ModelAndView deleteEmp(int eno) {
+		ModelAndView mav = new ModelAndView("/listEmp.html");
 		int re = -1;
 		String str = "";
-		re = dao.updateEmp(e);
+		re = dao.deleteEmp(eno);
 		if (re > 0) {
 			str = "회원삭제 성공";
 		}
-		return str;
+		return mav;
 	}
 }
