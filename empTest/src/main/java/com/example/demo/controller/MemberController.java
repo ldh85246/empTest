@@ -17,16 +17,9 @@ public class MemberController {
 		this.dao = dao;
 	}
 	@RequestMapping("/login.do")
-	public String login(HttpServletRequest request, MemberVo m) {
-		String str = "no";
+	public MemberVo login(HttpServletRequest request ,MemberVo m) {
+		System.out.println(m);
 		MemberVo vo = dao.isMember(m);
-		if(vo != null) {
-			System.out.println("로그인 성공");
-			str = m.getId();
-		}else {
-			System.out.println("로그인 실패");
-		}
-		System.out.println("결과 : " + str);
-		return str;
+		return vo;
 	}
 }
