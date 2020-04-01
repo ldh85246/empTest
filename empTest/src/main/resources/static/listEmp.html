@@ -3,14 +3,14 @@
 <head>
 <style type="text/css">
 	.on{
-		background: orange;
+		background: #FAECC5;
 	}
 	#afterLogin{
 		visibility: hidden;
 	}
-	body{
-		background-image: url('dog.png')
-	}
+
+	#dotori{
+		font:bold; 
 </style>
 <meta charset="utf-8">
 <title>Insert title here</title>
@@ -94,7 +94,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<h2>사원목록</h2>
+	<h2 id="title" style="text-align:center">DOTORI</h2>
+	<h3>사원목록</h3>
 	
 	<div id="beforeLogin">
 		<form id="login">
@@ -112,7 +113,7 @@ $(document).ready(function(){
 	<!-- <a href="/insertEmp.html" id="insert">사원등록</a> -->
 	<button id="insert">사원등록</button>
 	<hr>
-	<table id="list" border="1" width="80%">
+	<table id="list" border="1" width="80%" style="margin-left: auto; margin-right: auto;">
 		<tr>
 			<thead>
 				<th>사원번호</th>
@@ -120,7 +121,7 @@ $(document).ready(function(){
 				<th>직급</th>
 				<th>급여</th>
 				<th>상여</th>
-				<th>관리자번호</th>
+				<th>관리자번호</th>   
 				<th>입사일</th>
 				<th>이메일</th>
 				<th>주민번호</th>
