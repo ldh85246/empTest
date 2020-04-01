@@ -23,13 +23,9 @@
 	}
 	#list{
 		background-color: white;
-
-	#dotori{
-		font:bold; 
-		}
+	}
 	#menu{
 		visibility: hidden; 
-
 	}
 </style>
 <meta charset="utf-8">
@@ -66,41 +62,20 @@ $(document).ready(function(){
 				var memberID = sessionStorage.getItem("memberID")
 				if(memberID == null){
 					alert("로그인 하세요.")
-					location.href="/listEmp.html"
+					location.href="/login.html"
 				}else{
 					location.href = "/detailEmp.html?eno=" + emp.eno;
 				}
 			})
 		});
+		$("#loginOK").text(memberID+"님 환영합니다.")
 		if(memberID != null){
-			$("#beforeLogin").css("visibility", "hidden")
-			$("#afterLogin").css("visibility", "visible")
-			$("#menu").css("visibility", "visible")
-			$("#loginOK").text(memberID+"님 환영합니다.")
-		}else{
-			$("#beforeLogin").css("visibility", "visible")
-			$("#afterLogin").css("visibility", "hidden")
 			$("#menu").css("visibility", "hidden")
+		}else if (memberID == "admin"){
+			$("#menu").css("visibility", "visible")
 		}
 	}});
 	
-	$("#btnLogin").click(function(){
-		var member = $("#login").serialize()
-		$.ajax("/login.do", {data:member, success:function(data){
-			if(data.id == null){
-				alert("잘못된 접근입니다.");
-				$("#menu").css("visibility", "hidden")
-			}else{
-				sessionStorage.setItem("memberID",data.id);
-				$("#beforeLogin").css("visibility", "hidden")
-				$("#afterLogin").css("visibility", "visible")
-				$("#loginOK").text(data.id+"님 환영합니다.")
-				if(data.id == "admin"){
-					$("#menu").css("visibility", "visible")
-				}
-			}
-		}})
-	})
 	
 	$("#btnLogout").click(function(){
 		sessionStorage.removeItem("memberID")
@@ -128,21 +103,6 @@ $(document).ready(function(){
 		<img id="img" src="logoo.png">
 	</div>
 	<h3>사원목록</h3><hr>
-	<div id="beforeLogin">
-		<form id="login">
-		<table>
-		<tr>
-			<td>ID</td><td><input type="text" name="id"></td><br>
-		</tr>
-		<tr>
-			<td>PW</td><td><input type="password" name="pwd"></td><br>
-		</tr>
-			
-		</table>
-		<button id="btnLogin">로그인</button>
-		</form>
-	</div>
-	
 	<div id="afterLogin">
 		<span id="loginOK"></span>&nbsp;&nbsp;
 		<button id="btnLogout">로그아웃</button>
