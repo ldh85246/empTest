@@ -41,12 +41,8 @@ public class EmpController {
 	@RequestMapping(value = "/insertEmp.do")
 	public String insertEmp(EmpVo e) {
 		int re = -1;
-		String str = "";
 		re = dao.insertEmp(e);
-		if (re > 0) {
-			str = "사원등록 성공";
-		}
-		return str;
+		return ""+re;
 	}
 	
 	@RequestMapping(value = "/updateEmp.do")
