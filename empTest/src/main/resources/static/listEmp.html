@@ -8,9 +8,21 @@
 	#afterLogin{
 		visibility: hidden;
 	}
+	#title{
+		text-align: center;
+		
+	}
+	#img{
+		width: 20%;
+		height: 20%;
+	}
 
-	#dotori{
-		font:bold; 
+	#sss{
+		background-color: #EAEAEA;
+	}
+	#list{
+		background-color: white;
+	}
 </style>
 <meta charset="utf-8">
 <title>Insert title here</title>
@@ -94,15 +106,23 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<h2 id="title" style="text-align:center">DOTORI</h2>
-	<h3>사원목록</h3>
-	
+	<div id="title">
+		<img id="img" src="logoo.png">
+	</div>
+	<h3>사원목록</h3><hr>
 	<div id="beforeLogin">
 		<form id="login">
-			아이디 : <input type="text" name="id">
-			비밀번호 : <input type="password" name="pwd">
-		</form>
+		<table>
+		<tr>
+			<td>ID</td><td><input type="text" name="id"></td><br>
+		</tr>
+		<tr>
+			<td>PW</td><td><input type="password" name="pwd"></td><br>
+		</tr>
+			
+		</table>
 		<button id="btnLogin">로그인</button>
+		</form>
 	</div>
 	
 	<div id="afterLogin">
@@ -114,6 +134,7 @@ $(document).ready(function(){
 	<!-- <a href="/insertEmp.html" id="insert">사원등록</a> -->
 	<button id="insert">사원등록</button>
 	<hr>
+	<div id="sss">
 	<table id="list" border="1" width="80%" style="margin-left: auto; margin-right: auto;">
 		<tr>
 			<thead>
@@ -129,5 +150,6 @@ $(document).ready(function(){
 			</thead>
 		</tr>
 	</table>
+	</div>
 </body>
 </html>
