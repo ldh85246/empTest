@@ -20,6 +20,7 @@ public class MemberController {
 	public MemberVo login(HttpServletRequest request ,MemberVo m) {
 		System.out.println(m);
 		MemberVo vo = dao.isMember(m);
+		System.out.println(vo);
 		return vo;
 	}
 }
