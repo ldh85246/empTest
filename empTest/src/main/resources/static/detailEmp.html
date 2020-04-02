@@ -17,12 +17,12 @@ $(document).ready(function(){
 		$("#sal").val(emp.sal);
 		$("#comm").val(emp.comm);
 		$("#mgr").val(emp.mgr);
-		$("#hiredate").val(emp.hiredate);
+		$("#hiredate").val(emp.hiredate.substring(0, 10));
 		$("#dno").val(emp.dno);
 		$("#email").val(emp.email);
 		$("#jumin").val(emp.jumin);
-		$("#updateEmp").attr("href", "/updateEmp.html?eno=" + eno);
-		$("#deleteEmp").attr("href", "/deleteEmp.do?eno=" + eno);
+		$("#updateEmp").attr("href", "/updateEmp.html?eno=" + emp.eno);
+		$("#deleteEmp").attr("href", "/deleteEmp.do?eno=" + emp.eno);
 		if(memberID=="admin"){
 			$("#menu").css("visibility", "visible")
 		}else{
@@ -37,16 +37,47 @@ $(document).ready(function(){
 	<h2>사원 상세 정보</h2>
 	<hr>
 	<form id="f">
-		사원번호 : <input type="text" id="eno" readonly="readonly"><br>
-		사원명 : <input type="text" id="ename" readonly="readonly"><br>
-		직급 : <input type="text" id="job" readonly="readonly"><br>
-		급여 : <input type="text" id="sal" readonly="readonly"><br>
-		수당 : <input type="text" id="comm" readonly="readonly"><br>
-		관리자 : <input type="text" id="mgr" readonly="readonly"><br>
-		입사일 : <input type="text" id="hiredate" readonly="readonly"><br>
-		부서명 : <input type="text" id="dno" readonly="readonly"><br>
-		이메일 : <input type="text" id="email" readonly="readonly"><br>
-		주민번호 : <input type="text" id="jumin" readonly="readonly"><br>
+		<table>
+			<tr>
+				<td>사원번호 : </td>
+				<td><input type="text" id="eno" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td>사원명 : </td>
+				<td><input type="text" id="ename" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td>직급 : </td>
+				<td><input type="text" id="job" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td>급여 : </td>
+				<td><input type="text" id="sal" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td>수당 : </td>
+				<td><input type="text" id="comm" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td>관리자 : </td>
+				<td><input type="text" id="mgr" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td>입사일 : </td>
+				<td><input type="text" id="hiredate" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td>부서명 : </td>
+				<td><input type="text" id="dno" readonly="readonly"></td>
+			<tr>
+				<td>이메일 : </td>
+				<td><input type="text" id="email" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td>주민번호 : </td>
+				<td><input type="text" id="jumin" readonly="readonly"></td>
+			</tr>
+		</table>
 	</form>
 	<div id= "menu"><a id="updateEmp">수정</a><a id="deleteEmp">삭제</a></div>
 </body>
