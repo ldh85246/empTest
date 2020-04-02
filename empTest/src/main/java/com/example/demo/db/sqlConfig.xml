@@ -6,6 +6,7 @@
 <properties resource="com/example/demo/db/bit.properties" />
 <typeAliases>
 	<typeAlias type="com.example.demo.vo.EmpVo" alias="empVo"/>
+	<typeAlias type="com.example.demo.vo.EmpListVo" alias="empListVo"/>
 	<typeAlias type="com.example.demo.vo.DeptVo" alias="deptVo"/>
 	<typeAlias type="com.example.demo.vo.LogVo" alias="logVo"/>
 	<typeAlias type="com.example.demo.vo.MemberVo" alias="memberVo"/>
