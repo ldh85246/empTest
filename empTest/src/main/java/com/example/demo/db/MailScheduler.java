@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.EmpDao;
@@ -35,7 +34,7 @@ public class MailScheduler {
 	
 	public String mail() {
 		String str = "";
-		List<EmpVo>list = dao.listEmp();
+		List<EmpVo>list = dao.listEmpOnly();
 		for(int i = 0 ;i<list.size() ;i++ ) {
 			SimpleMailMessage mailMessage = new SimpleMailMessage();
 			mailMessage.setSubject("급여명세서 입니다");

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.example.demo.vo.EmpListVo;
 import com.example.demo.vo.EmpVo;
 
 public class EmpManager {
@@ -21,13 +22,24 @@ public class EmpManager {
 			System.out.println(e);
 		}
 	}
-	public static List<EmpVo> listEmp(){
+	public static List<EmpVo> listEmpOnly(){
 		SqlSession session = factory.openSession();
-		List<EmpVo> list = session.selectList("emp.list");
+		List<EmpVo> list = session.selectList("emp.listEmpOnly");
 		session.close();
 		return list;
 	}
-	
+	public static List<EmpVo> listMgr(){
+		SqlSession session = factory.openSession();
+		List<EmpVo> list = session.selectList("emp.listMgr");
+		session.close();
+		return list;
+	}
+	public static List<EmpListVo> listEmpDept(){
+		SqlSession session = factory.openSession();
+		List<EmpListVo> list = session.selectList("emp.listEmpDept");
+		session.close();
+		return list;
+	}
 	public static EmpVo detailEmp(int eno) {
 		SqlSession session = factory.openSession();
 		EmpVo e = session.selectOne("emp.detail", eno);

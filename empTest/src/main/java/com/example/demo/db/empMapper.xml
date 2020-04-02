@@ -3,8 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="emp">
-	<select id="list" resultType="empVo">
+	<select id="listEmpOnly" resultType="empVo">
 		select * from emp
+	</select>
+	<select id="listEmpDept" resultType="empListVo">
+		select e.eno, e.ename, e.job, e.sal, e.comm, m.ename mgr, e.hiredate, d.dname, e.email, e.jumin
+		  from emp e
+		  left join emp m
+		         on e.mgr = m.eno
+		  left join dept d
+						 on e.dno = d.dno
+		 order by e.eno
+	</select>
+	<select id="listMgr" resultType="empVo">
+		select * from emp where eno in (select mgr from emp)
 	</select>
 	<insert id="insert">
 		insert into emp values(#{eno},#{ename},#{job},#{sal},#{comm},#{mgr},#{hiredate},#{dno},#{email} , #{jumin})

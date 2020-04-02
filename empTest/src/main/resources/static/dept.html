@@ -7,10 +7,14 @@
 .active{
 	background: pink;
 }
+#btnAdd{
+	visibility: hidden;
+}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
+	var memberID = sessionStorage.getItem("memberID");
 	var arr;
 	function listDept() {
 		$("#deptList").empty();
@@ -45,6 +49,9 @@ $(function(){
 	$("#btn").click(function(){
 		listDept();
 	});
+	if(memberID == "admin"){
+		$("#btnAdd").css("visibility" ,"visible" );
+	}
 })
 </script>
 </head>

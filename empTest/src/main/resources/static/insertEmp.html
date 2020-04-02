@@ -11,6 +11,22 @@ td{
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
+	var arrMgr;
+	var arrDept;
+	$.ajax("/listMgr.do", {success:function(list){
+		arrMgr = list;
+		$.each(arrMgr, function(idx, mgr){
+			var option = $("<option/>").attr("value", mgr.eno).text(mgr.ename);
+			$("#mgr").append(option);
+		});
+	}});
+	$.ajax("/listDept.do", {success:function(list){
+		arrDept = list;
+		$.each(arrDept, function(idx, dept){
+			var option = $("<option/>").attr("value", dept.dno).text(dept.dname);
+			$("#dno").append(option);
+		});
+	}});
 	$("#btnAdd").click(function(){
 		var data = $("#f").serialize();
  		$.ajax({url:"/insertEmp.do", data:data ,success:function(r){
@@ -25,38 +41,42 @@ $(function(){
 <body>
 	<h2>사원 등록</h2>
 	<form id="f">
-	<table>
-		<tr>
-			<td>사원번호 : </td><td><input type="number" name="eno"></td>
-		</tr>
-		<tr>
-			<td>사원명 : </td><td><input type="text" name="ename"></td>
-		</tr>
-		<tr>
-			<td>직급 : </td><td><input type="text" name="job"></td>
-		</tr>
-		<tr>
-			<td>급여 : </td><td><input type="number" name="sal"></td>
-		</tr>
-		<tr>
-			<td>상여 : </td><td><input type="number" name="comm"></td>
-		</tr>
-		<tr>
-			<td>관리자번호 : </td><td><input type="number" name="mgr"></td>
-		</tr>
-		<tr>
-			<td>입사일 : </td><td><input type="text" name="hiredate"></td>
-		</tr>
-		<tr>
-			<td>부서번호 : </td><td><input type="number" name="dno"></td>
-		</tr>
-		<tr>
-			<td>이메일 : </td><td><input type="text" name="email"></td>
-		</tr>
-		<tr>
-			<td>주민번호 : </td><td><input type="text" name="jumin"></td>
-		</tr>
-	</table>
+		<table>
+			<tr>
+				<td>사원번호 : </td><td><input type="number" name="eno"></td>
+			</tr>
+			<tr>
+				<td>사원명 : </td><td><input type="text" name="ename"></td>
+			</tr>
+			<tr>
+				<td>직급 : </td><td><input type="text" name="job"></td>
+			</tr>
+			<tr>
+				<td>급여 : </td><td><input type="number" name="sal"></td>
+			</tr>
+			<tr>
+				<td>상여 : </td><td><input type="number" name="comm"></td>
+			</tr>
+			<tr>
+				<td>관리자 : </td>
+	<!-- 			<td><input type="number" name="mgr"></td> -->
+				<td><select id="mgr" name="mgr"></select></td>
+			</tr>
+			<tr>
+				<td>입사일 : </td><td><input type="text" name="hiredate"></td>
+			</tr>
+			<tr>
+				<td>부서 : </td>
+	<!-- 			<td><input type="number" name="dno"></td> -->
+				<td><select id="dno" name="dno"></select></td>
+			</tr>
+			<tr>
+				<td>이메일 : </td><td><input type="text" name="email"></td>
+			</tr>
+			<tr>
+				<td>주민번호 : </td><td><input type="text" name="jumin"></td>
+			</tr>
+		</table>
 		<button id="btnAdd">등록</button>
 	</form>
 </body>

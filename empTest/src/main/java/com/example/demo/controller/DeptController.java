@@ -20,7 +20,7 @@ public class DeptController {
 	public void setDao(DeptDao dao) {
 		this.dao = dao;
 	}
-	@RequestMapping("/listDept.do")
+	@RequestMapping(value="/listDept.do", produces="application/json; charset=utf-8")
 	public String listDept(HttpServletRequest request) {
 		String str = "";
 		List<DeptVo>list = dao.listDept();

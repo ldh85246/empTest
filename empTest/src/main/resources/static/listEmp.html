@@ -50,10 +50,11 @@ $(document).ready(function(){
 			var tdSal = $("<td/>").text(emp.sal);
 			var tdComm = $("<td/>").text(emp.comm);
 			var tdMgr = $("<td/>").text(emp.mgr);
+			var tdDname = $("<td/>").text(emp.dname);
 			var tdHiredate = $("<td/>").text(emp.hiredate);
 			var tdEmail = $("<td/>").text(emp.email);
 			var tdJumin = $("<td/>").text(emp.jumin);
-			$(tr).append(tdEno, tdEname, tdJob, tdSal, tdComm, tdMgr,
+			$(tr).append(tdEno, tdEname, tdJob, tdSal, tdComm, tdMgr, tdDname,
 					tdHiredate, tdEmail, tdJumin);
 			$("#list").append(tr);
 			
@@ -160,7 +161,8 @@ $(document).ready(function(){
 				<th>직급</th>
 				<th>급여</th>
 				<th>상여</th>
-				<th>관리자번호</th>   
+				<th>관리자</th>   
+				<th>부서명</th>
 				<th>입사일</th>
 				<th>이메일</th>
 				<th>주민번호</th>
