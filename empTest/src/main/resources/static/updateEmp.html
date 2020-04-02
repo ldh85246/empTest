@@ -7,6 +7,22 @@
 <script type="text/javascript">
 $(function(){
 	var eno = location.search;
+	var arrMgr;
+	var arrDept;
+	$.ajax("/listMgr.do", {success:function(list){
+		arrMgr = list;
+		$.each(arrMgr, function(idx, mgr){
+			var option = $("<option/>").attr("value", mgr.eno).text(mgr.ename);
+			$("#mgr").append(option);
+		});
+	}});
+	$.ajax("/listDept.do", {success:function(list){
+		arrDept = list;
+		$.each(arrDept, function(idx, dept){
+			var option = $("<option/>").attr("value", dept.dno).text(dept.dname);
+			$("#dno").append(option);
+		});
+	}});
 	eno = eno.substring(eno.indexOf("=") + 1);
 	console.log(eno);
 	$.ajax({url:"/detailEmp.do?eno=" + eno, success:function(emp){
@@ -60,16 +76,18 @@ $(function(){
 				<td><input type="number" name="comm" id="comm"></td>
 			</tr>
 			<tr>
-				<td>관리자번호 : </td>
-				<td><input type="number" name="mgr" id="mgr"></td>
+				<td>관리자 : </td>
+				<td><select id="mgr" name="mgr"></select></td>
+<!-- 				<td><input type="number" name="mgr" id="mgr"></td> -->
 			</tr>
 			<tr>
 				<td>입사일 : </td>
 				<td><input type="text" name="hiredate" id="hiredate"></td>
 			</tr>
 			<tr>
-				<td>부서번호 : </td>
-				<td><input type="text" name="dno" id="dno"></td>
+				<td>부서 : </td>
+				<td><select id="dno" name="dno"></select></td>
+<!-- 				<td><input type="text" name="dno" id="dno"></td> -->
 			</tr>
 			<tr>
 				<td>이메일 : </td>
