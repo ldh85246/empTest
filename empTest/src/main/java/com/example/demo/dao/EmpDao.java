@@ -13,6 +13,9 @@ public class EmpDao {
 	public List<EmpVo> listEmpOnly(){
 		return EmpManager.listEmpOnly();
 	}
+	public List<EmpVo> listMgr(){
+		return EmpManager.listMgr();
+	}
 	public List<EmpListVo> listEmpDept(){
 		return EmpManager.listEmpDept();
 	}

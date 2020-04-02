@@ -15,6 +15,9 @@
 						 on e.dno = d.dno
 		 order by e.eno
 	</select>
+	<select id="listMgr" resultType="empVo">
+		select * from emp where eno in (select mgr from emp)
+	</select>
 	<insert id="insert">
 		insert into emp values(#{eno},#{ename},#{job},#{sal},#{comm},#{mgr},#{hiredate},#{dno},#{email} , #{jumin})
 	</insert>

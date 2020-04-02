@@ -34,6 +34,14 @@ public class EmpController {
 		str = gson.toJson(list);
 		return str;
 	}
+	@RequestMapping(value = "/listMgr.do", produces = "application/json; charset=UTF-8")
+	public String listMgr(HttpServletRequest request) {
+		String str = "";
+		List<EmpVo>list = dao.listMgr();
+		Gson gson = new Gson();
+		str = gson.toJson(list);
+		return str;
+	}
 	
 	@RequestMapping(value = "/detailEmp.do", produces = "application/json; charset=UTF-8")
 	public String detailEmp(HttpServletRequest request, int eno) {

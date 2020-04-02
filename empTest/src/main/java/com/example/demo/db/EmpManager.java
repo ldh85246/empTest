@@ -28,6 +28,12 @@ public class EmpManager {
 		session.close();
 		return list;
 	}
+	public static List<EmpVo> listMgr(){
+		SqlSession session = factory.openSession();
+		List<EmpVo> list = session.selectList("emp.listMgr");
+		session.close();
+		return list;
+	}
 	public static List<EmpListVo> listEmpDept(){
 		SqlSession session = factory.openSession();
 		List<EmpListVo> list = session.selectList("emp.listEmpDept");
