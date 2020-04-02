@@ -12,7 +12,6 @@ public class EmpDao {
 	public List<EmpVo> listEmp(){
 		return EmpManager.listEmp();
 	}
-	
 	public EmpVo detailEmp(int eno) {
 		return EmpManager.detailEmp(eno);
 	}
